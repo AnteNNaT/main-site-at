@@ -1,22 +1,18 @@
 package lesson1;
 
-import java.util.Random;
 
 public class Cat implements Actions{
     private String type;
     private String name;
     private float maxHeight;
     private float maxDistance;
-    //private final Random random = new Random();
 
     public Cat(String name, float maxHeight, float maxDistance) {
-       // float HeightDiff = random.nextFloat() * maxHeight - (maxHeight / 2);
-        //float DistanceDiff = random.nextFloat() * maxDistance - (maxDistance / 2);
 
-        this.type= "Cat";
+        this.type= "Кот";
         this.name = name;
-        this.maxHeight = maxHeight; //+ HeightDiff;
-        this.maxDistance = maxDistance; // + DistanceDiff;
+        this.maxHeight = maxHeight;
+        this.maxDistance = maxDistance;
     }
 
     String getType() {return this.type;}
@@ -42,5 +38,15 @@ public class Cat implements Actions{
             return running(((Treadmill) obstacle).getLenght());
         }
         return null;
+    }
+
+    public boolean possibility(Obstacles obstacle) {
+        if (obstacle instanceof Wall) {
+            return this.maxHeight >= ((Wall) obstacle).getHeight();
+        }
+        if (obstacle instanceof Treadmill) {
+            return this.maxDistance >= ((Treadmill) obstacle).getLenght();
+        }
+        return false;
     }
 }

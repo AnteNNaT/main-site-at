@@ -1,6 +1,5 @@
 package lesson1;
 
-import java.util.Random;
 
 public class Robot implements Actions {
     private String type;
@@ -10,7 +9,7 @@ public class Robot implements Actions {
 
     public Robot(String name, float maxHeight, float maxDistance) {
 
-        this.type= "Robot";
+        this.type= "Робот";
         this.name = name;
         this.maxHeight = maxHeight;
         this.maxDistance = maxDistance;
@@ -39,5 +38,15 @@ public class Robot implements Actions {
         return running(((Treadmill) obstacle).getLenght());
     }
         return null;
+    }
+
+    public boolean possibility(Obstacles obstacle) {
+        if (obstacle instanceof Wall) {
+            return this.maxHeight >= ((Wall) obstacle).getHeight();
+        }
+        if (obstacle instanceof Treadmill) {
+            return this.maxDistance >= ((Treadmill) obstacle).getLenght();
+        }
+        return false;
     }
 }
