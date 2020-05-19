@@ -23,6 +23,7 @@ public class Lesson1 {
                     System.out.println(creature.action(obstacle));
                 }
                 else {
+                    System.out.println(creature.action(obstacle));
                     System.out.println("Участник сошел с дистанции!");
                     break;
                 }
