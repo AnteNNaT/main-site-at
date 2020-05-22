@@ -1,4 +1,4 @@
-package lesson1;
+package ru.geekbrains.main.site;
 
 public interface Actions {
 

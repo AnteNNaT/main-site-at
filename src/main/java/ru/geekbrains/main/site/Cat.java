@@ -1,4 +1,4 @@
-package lesson1;
+package ru.geekbrains.main.site;
 
 
 public class Cat implements Actions{
@@ -15,10 +15,6 @@ public class Cat implements Actions{
         this.maxDistance = maxDistance;
     }
 
-    String getType() {return this.type;}
-    String getName() {return this.name;}
-    Float getMaxHeight() {return this.maxHeight;}
-    Float getMaxDistance() {return this.maxDistance;}
 
     public String running(float Distance) {
         return Distance <= this.maxDistance? this.type +" " + this.name + " пробежал " + Distance + " м.!" :

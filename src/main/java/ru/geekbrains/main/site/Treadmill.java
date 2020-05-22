@@ -1,4 +1,4 @@
-package lesson1;
+package ru.geekbrains.main.site;
 
 public class Treadmill extends Obstacles {
 
@@ -8,6 +8,7 @@ public class Treadmill extends Obstacles {
         super("Treadmill");
         this.Lenght=Lenght;
     }
+
     Float getLenght() {return this.Lenght;}
 
 }
