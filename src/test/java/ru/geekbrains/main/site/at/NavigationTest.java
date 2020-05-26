@@ -17,6 +17,12 @@ public class NavigationTest extends BaseTest {
 //    Блог
 //    Тесты
 //    Карьера
+    /* Улучшить “Тест 1”
+        Вынести проверку каждой страницы в отдельный тест
+    Реализовать проверку отображения блоков Header и Footer на каждой странице сайта (как минимум самого блока)
+    *Создать классы Header и Footer в которых создать локаторы ко всем элементам в этих блоках
+
+     */
 
     //Много кода
     //Сложно оптимизировать при изменениях
@@ -24,23 +30,59 @@ public class NavigationTest extends BaseTest {
     //тестовые данные в проперти файле
     //6 проверок в одном тесте
 
+    void navigationTest(String selector, String headerText){
+        WebElement buttonCourses = driver.findElement(By.cssSelector(selector));
+        buttonCourses.click();
+        WebElement header=driver.findElement(By.cssSelector("header[id='top-menu']"));
+        Assertions.assertTrue(header.isDisplayed());
+        WebElement textNamePage = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]"));
+        Assertions.assertEquals(headerText, textNamePage.getText());
+        WebElement footer=driver.findElement(By.cssSelector("footer[class='site-footer']"));
+        Assertions.assertTrue(footer.isDisplayed());
+    }
+
     @Test
     void courses() {
-        driver.findElement(By.cssSelector("button>[class=\"svg-icon icon-popup-close-button \"]")).click();
 
-        WebElement buttonCourses = driver.findElement(By.cssSelector("[id='nav'] [href='/courses']"));
-        buttonCourses.click();
-        WebElement textNamePage = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]"));
-        Assertions.assertEquals("Курсы", textNamePage.getText());
+        navigationTest("[id='nav'] [href='/courses']", "Курсы");
     }
 
     @Test
     void events() {
-        WebElement buttonEvents = driver.findElement(By.cssSelector("[id='nav'] [href='/events']"));
-        buttonEvents.click();
-        WebElement textNamePage = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]"));
-        Assertions.assertEquals("Вебинары", textNamePage.getText());
+
+        navigationTest("[id='nav'] [href='/events']", "Вебинары");
+
     }
+
+    @Test
+    void topics() {
+
+        navigationTest("[id='nav'] [href='/topics']", "Форум");
+
+    }
+
+    @Test
+    void posts() {
+
+        navigationTest("[id='nav'] [href='/posts']", "Блог");
+
+
+    }
+
+    @Test
+    void tests() {
+
+        navigationTest("[id='nav'] [href='/tests']", "Тесты");
+
+    }
+
+    @Test
+    void career() {
+
+        navigationTest("[id='nav'] [href='/career']", "Карьера");
+
+    }
+
 
 //    @Test
 //    void checkNavigation(){

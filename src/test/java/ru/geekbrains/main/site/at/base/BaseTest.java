@@ -16,7 +16,7 @@ public class BaseTest {
     public WebDriverWait wait10second;
 
     @BeforeEach
-    void after() {
+    void before() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-notifications");
@@ -33,7 +33,7 @@ public class BaseTest {
     }
 
     @AfterEach
-    void before() {
+    void after() {
         driver.quit();
     }
 }
