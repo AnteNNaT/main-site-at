@@ -31,13 +31,13 @@ public class NavigationTest extends BaseTest {
     //6 проверок в одном тесте
 
     void navigationTest(String selector, String headerText){
-        WebElement buttonCourses = driver.findElement(By.cssSelector(selector));
+        WebElement buttonCourses = BaseTest.getDriver().findElement(By.cssSelector(selector));
         buttonCourses.click();
-        WebElement header=driver.findElement(By.cssSelector("header[id='top-menu']"));
+        WebElement header=BaseTest.getDriver().findElement(By.cssSelector("header[id='top-menu']"));
         Assertions.assertTrue(header.isDisplayed());
-        WebElement textNamePage = driver.findElement(By.cssSelector("h2[class=\"gb-header__title\"]"));
+        WebElement textNamePage = BaseTest.getDriver().findElement(By.cssSelector("h2[class=\"gb-header__title\"]"));
         Assertions.assertEquals(headerText, textNamePage.getText());
-        WebElement footer=driver.findElement(By.cssSelector("footer[class='site-footer']"));
+        WebElement footer=BaseTest.getDriver().findElement(By.cssSelector("footer[class='site-footer']"));
         Assertions.assertTrue(footer.isDisplayed());
     }
 

@@ -12,8 +12,8 @@ import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
-    public WebDriver driver;
-    public WebDriverWait wait10second;
+    private static WebDriver driver;
+    private WebDriverWait wait10second;
 
     @BeforeEach
     void before() {
@@ -36,4 +36,12 @@ public class BaseTest {
     void after() {
         driver.quit();
     }
+
+    public static WebDriver getDriver() {
+        return driver;
+    }
+    public WebDriverWait getWebDriverWait() {
+        return wait10second;
+    }
+
 }
