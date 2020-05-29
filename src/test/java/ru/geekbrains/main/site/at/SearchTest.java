@@ -1,6 +1,5 @@
 package ru.geekbrains.main.site.at;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,6 +7,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.geekbrains.main.site.at.base.BaseTest;
 
 import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 
 public class SearchTest extends BaseTest {
@@ -35,9 +37,9 @@ public class SearchTest extends BaseTest {
         WebElement blogsCount=BaseTest.getDriver().findElement(By.xpath("//a[@class='search-page-block__more' and @data-tab='blogs']/span"));
         WebElement forumsCount=BaseTest.getDriver().findElement(By.xpath("//a[@class='search-page-block__more' and @data-tab='forums']/span"));
         WebElement testsCount=BaseTest.getDriver().findElement(By.xpath("//a[@class='search-page-block__more' and @data-tab='tests']/span"));
+        Integer GBCompany=BaseTest.getDriver().findElements(By.xpath("//div[@class='company-items']//h3/a[contains(text(),'GeekBrains')]")).size();
 
         List<WebElement> eventsList=BaseTest.getDriver().findElements(By.xpath("//a[@class='event__title h3 search_text']"));
-        WebElement GBCompany=BaseTest.getDriver().findElement(By.xpath("//div[@class='company-items']//h3/a[contains(text(),'GeekBrains')]"));
 
         getWebDriverWait().until(ExpectedConditions.textToBePresentInElement(professions,"Профессии"));
         getWebDriverWait().until(ExpectedConditions.textToBePresentInElement(courses,"Курсы"));
@@ -47,16 +49,15 @@ public class SearchTest extends BaseTest {
         getWebDriverWait().until(ExpectedConditions.textToBePresentInElement(tests,"Тесты"));
         getWebDriverWait().until(ExpectedConditions.textToBePresentInElement(projectAndCompany,"Проекты и компании"));
 
-        Assertions.assertTrue((Integer.parseInt(professionsCount.getText()))>=2,"Количество найденных профессий менее 2!");
-        Assertions.assertTrue((Integer.parseInt(coursesCount.getText()))>15,"Количество найденных курсов <= 15!");
-        Assertions.assertTrue((Integer.parseInt(eventsCount.getText())>180)&(Integer.parseInt(eventsCount.getText())<300),
-                "Количество найденных вебинаров не в диапазоне (180; 300)");
-        Assertions.assertTrue((Integer.parseInt(blogsCount.getText()))>300,"Количество найденных блогов менее 300!");
-        Assertions.assertTrue((Integer.parseInt(forumsCount.getText()))!=350,"Количество найденных форумов равно 350!");
-        Assertions.assertTrue((Integer.parseInt(testsCount.getText())) != 0,"Количество найденных тестов равно 0!");
-
-        Assertions.assertEquals("Java Junior. Что нужно знать для успешного собеседования?", eventsList.get(0).getText());
-        Assertions.assertNotNull(GBCompany, "В Проектах и компаниях не отображается GeekBrains");
+        assertThat(Integer.parseInt(professionsCount.getText()), greaterThanOrEqualTo(2));
+        assertThat(Integer.parseInt(coursesCount.getText()),greaterThan(15));
+        assertThat(Integer.parseInt(eventsCount.getText()), allOf(greaterThan(180),lessThan(300)));
+        assertThat(Integer.parseInt(blogsCount.getText()), greaterThan(300));
+        assertThat(Integer.parseInt(forumsCount.getText()), not(equalTo(350)));
+        assertThat(Integer.parseInt(testsCount.getText()), not(equalTo(0)));
+        assertThat(eventsList.get(0).getText(), equalTo("Java Junior. Что нужно знать для успешного собеседования?"));
+        assertThat(GBCompany, greaterThan(0));
 
     }
+
 }
