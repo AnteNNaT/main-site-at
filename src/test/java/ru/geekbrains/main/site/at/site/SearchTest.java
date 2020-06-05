@@ -21,7 +21,7 @@ public class SearchTest extends BaseTest {
         .verifyEventsCountMoreThanMinAmountAndLessThanMaxAmount(180,300)
         .verifyBlogsCountMoreThanSpecifiedAmount(300)
         .verifyForumsCountNotEqualToSpecifiedAmount(350)
-        .verifyForumsCountNotNull()
+        .verifyTestsCountNotNull()
         .verifyFirstValueOfEventsListContainsRequiredText("Java Junior. Что нужно знать для успешного собеседования?")
         .verifyProjectAndCompanyContainsGeekBrains();
 

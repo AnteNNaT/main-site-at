@@ -112,8 +112,8 @@ public class SearchResultPage {
         assertThat(Integer.parseInt(forumsCount.getText()), not(equalTo(amountOfElements)));
         return this;
     }
-    public SearchResultPage verifyForumsCountNotNull(){
-        assertThat(Integer.parseInt(forumsCount.getText()), not(equalTo(0)));
+    public SearchResultPage verifyTestsCountNotNull(){
+        assertThat(Integer.parseInt(testsCount.getText()), not(equalTo(0)));
         return this;
     }
     public SearchResultPage verifyFirstValueOfEventsListContainsRequiredText(String WebinarName){
