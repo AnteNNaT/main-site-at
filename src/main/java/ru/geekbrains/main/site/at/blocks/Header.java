@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.blocks;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,12 +33,15 @@ public class Header {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Проверка названия страницы '{expectedNamePage}'")
     public Page checkNamePage(String expectedNamePage) {
         new WebDriverWait(driver, 10)
                 .until(ExpectedConditions.textToBePresentInElement(textNamePage,expectedNamePage));
         //Assertions.assertEquals(expectedNamePage, textNamePage.getText());
         return new Page(driver);
     }
+
+    @Step("Проверка видимости хедера")
     public Page checkHeaderIsDisplayed(){
         Assertions.assertTrue(header.isDisplayed());
         return new Page(driver);

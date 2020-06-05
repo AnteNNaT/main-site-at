@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -74,6 +75,7 @@ public class SearchResultPage {
         return search;
     }
 
+    @Step("Проверка имени блока в результатах поиска")
     public SearchResultPage checkBlocksName() {
 
         WebDriverWait wait20second=new WebDriverWait(driver, 20);
@@ -86,36 +88,42 @@ public class SearchResultPage {
         wait20second.until(ExpectedConditions.textToBePresentInElement(projectAndCompany,"Проекты и компании"));
         return this;
     }
-
+    @Step("Проверка: Число профессий не менее чем '{amountOfElements}'")
     public SearchResultPage verifyProfessionsCountNoLessThanSpecifiedAmount(Integer amountOfElements){
         assertThat(Integer.parseInt(professionsCount.getText()), greaterThanOrEqualTo(amountOfElements));
         return this;
     }
+    @Step("Проверка: число курсов более чем '{amountOfElements}'")
     public SearchResultPage verifyCoursesCountMoreThanSpecifiedAmount(Integer amountOfElements){
         assertThat(Integer.parseInt(coursesCount.getText()),greaterThan(amountOfElements));
         return this;
     }
+    @Step("Проверка: число вебинаров больше чем '{minAmountOfElements}', но меньше чем '{maxAmountOfElements}'")
     public SearchResultPage verifyEventsCountMoreThanMinAmountAndLessThanMaxAmount(Integer minAmountOfElements, Integer maxAmountOfElements){
         assertThat(Integer.parseInt(eventsCount.getText()), allOf(greaterThan(minAmountOfElements),lessThan(maxAmountOfElements)));
         return this;
     }
-
+    @Step("Проверка: число блогов более чем '{amountOfElements}'")
     public SearchResultPage verifyBlogsCountMoreThanSpecifiedAmount(Integer amountOfElements){
         assertThat(Integer.parseInt(blogsCount.getText()), greaterThan(amountOfElements));
         return this;
     }
+    @Step("Проверка: число форумов не равно '{amountOfElements}'")
     public SearchResultPage verifyForumsCountNotEqualToSpecifiedAmount(Integer amountOfElements){
         assertThat(Integer.parseInt(forumsCount.getText()), not(equalTo(amountOfElements)));
         return this;
     }
-    public SearchResultPage verifyForumsCountNotNull(){
-        assertThat(Integer.parseInt(forumsCount.getText()), not(equalTo(0)));
+    @Step("Проверка: число тестов не равно 0")
+    public SearchResultPage verifyTestsCountNotNull(){
+        assertThat(Integer.parseInt(testsCount.getText()), not(equalTo(0)));
         return this;
     }
+    @Step("Проверка: первый элемент в блоке 'Вебинары': '{WebinarName}'")
     public SearchResultPage verifyFirstValueOfEventsListContainsRequiredText(String WebinarName){
         assertThat(eventsList.get(0).getText(), equalTo(WebinarName));
         return this;
     }
+    @Step("Проверка: В 'Проектах и компаниях' отображается GeekBrains")
     public SearchResultPage verifyProjectAndCompanyContainsGeekBrains(){
         assertThat(GBCompany.size(), greaterThan(0));
         return this;

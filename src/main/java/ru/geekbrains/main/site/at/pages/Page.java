@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -39,6 +40,7 @@ public class Page {
         return footer;
     }
 
+    @Step("Закрытие Pop Up")
     public Page closedPopUp() {
         this.buttonPopUpClosed.click();
         return this;

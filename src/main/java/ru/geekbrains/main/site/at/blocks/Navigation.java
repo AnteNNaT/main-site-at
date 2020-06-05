@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.blocks;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,6 +34,7 @@ public class Navigation {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Нажатие на элемент навигации '{navItemName}'")
     public Page clickButton(String navItemName){
         switch (navItemName){
             case "Курсы" :{

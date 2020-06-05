@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.blocks;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,10 +24,13 @@ public class Search {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Нажатие кнопки 'Поиск'")
     public SearchResultPage ButtonSearchClick() {
         buttonSearch.click();
         return new SearchResultPage(driver);
     }
+
+    @Step("Ввод ключевого слова '{keyword}' в строку поиска")
     public SearchResultPage fillInputSearch(String keyword){
         inputSearch.sendKeys(keyword);
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);

@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.blocks;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -59,6 +60,7 @@ public class Footer {
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Проверка видимости футера")
     public Page checkFooterIsDisplayed(){
         Assertions.assertTrue(footer.isDisplayed());
         return new Page(driver);
