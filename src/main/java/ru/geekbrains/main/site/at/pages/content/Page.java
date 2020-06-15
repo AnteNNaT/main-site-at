@@ -15,17 +15,17 @@ public class Page extends BasePage {
     private Header header;
     private Footer footer;
     private CourseNavigation courseNavigation;
-   // private WebDriver driver;
+    private  CoursePage coursePage;
 
     public Page(WebDriver driver) {
         super(driver);
         this.navigation = new LeftNavigation(driver);
         this.header=new Header(driver);
         this.footer=new Footer(driver);
+        this.coursePage=new CoursePage(driver);
         this.courseNavigation=new CourseNavigation(driver);
         PageFactory.initElements(driver, this);
     }
-
 
    public LeftNavigation getNavigation() {
        return navigation;
@@ -41,6 +41,10 @@ public class Page extends BasePage {
 
     public CourseNavigation getCourseNavigation() {
         return courseNavigation;
+    }
+
+    public CoursePage getCoursePage() {
+        return coursePage;
     }
 
     @Step("Закрытие Pop Up")

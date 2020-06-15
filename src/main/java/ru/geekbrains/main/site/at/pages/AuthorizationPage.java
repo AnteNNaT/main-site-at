@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -30,6 +31,7 @@ public class AuthorizationPage extends BasePage {
         return header;
     }
 
+   @Step("Авторизация пользователя - логин: '{login}' пароль:'{password}'")
     public Page login(String login, String password) {
         inputLogin.sendKeys(login);
         inputPassword.sendKeys(password);

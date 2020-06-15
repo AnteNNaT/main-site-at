@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.blocks;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,15 +23,13 @@ public class CourseNavigation extends BasePage {
     @FindBy(css = "[class*='nav nav-tabs'] [href*='https://forbusiness']")
     private WebElement tabCompanies;
 
-
-
     public CourseNavigation(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
 
+    @Step("Нажатие на элемент навигации '{tab}'")
     public Page clickTab(Tab tab) {
-       // BasePage basePage=null;
         switch (tab) {
             case Professions: {
                 tabProfessions.click();

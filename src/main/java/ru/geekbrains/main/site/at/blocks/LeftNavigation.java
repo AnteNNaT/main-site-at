@@ -35,6 +35,7 @@ public class LeftNavigation extends BasePage {
 
     @Step("Нажатие на элемент навигации '{navItemName}'")
     public Page clickButton(Button navItemName) {
+        
         switch (navItemName) {
             case COURSES: {
                 buttonCourses.click();

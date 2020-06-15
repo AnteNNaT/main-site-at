@@ -20,7 +20,6 @@ public abstract class BasePage {
 
         this.wait10second = new WebDriverWait(driver, 10);
         this.wait30second = new WebDriverWait(driver, 30);
-     //   PageFactory.initElements(driver, this);
     }
 
     public BasePage closedPopUp() {
