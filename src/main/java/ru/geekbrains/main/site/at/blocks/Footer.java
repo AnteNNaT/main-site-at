@@ -6,57 +6,56 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import ru.geekbrains.main.site.at.pages.Page;
+import ru.geekbrains.main.site.at.pages.BasePage;
+import ru.geekbrains.main.site.at.pages.content.Page;
 
-public class Footer {
+public class Footer extends BasePage {
 
     @FindBy(css="footer[class='site-footer']")
-    WebElement footer;
+    private WebElement footer;
 
     @FindBy(css="svg[class='svg-icon icon-facebook_dark']")
-    WebElement facebookLink;
+    private WebElement facebookLink;
 
     @FindBy(css="svg[class='svg-icon icon-vk']")
-    WebElement vkLink;
+    private WebElement vkLink;
 
     @FindBy(css="svg[class='svg-icon icon-instagram']")
-    WebElement instagramLink;
+    private WebElement instagramLink;
 
     @FindBy(css="svg[class='svg-icon icon-youtube']")
-    WebElement youtubeLink;
+    private WebElement youtubeLink;
 
     @FindBy(css="svg[class='svg-icon icon-telegram']")
-    WebElement telegramLink;
+    private WebElement telegramLink;
 
     @FindBy(css="[href='/feedbacks']")
-    WebElement feedbacksLink;
+    private WebElement feedbacksLink;
 
     @FindBy(css="div[class='site-footer__links'] a[href='https://geekbrains.zendesk.com/hc/ru']")
-    WebElement helpLink;
+    private WebElement helpLink;
 
     @FindBy(css="[href='/company']")
-    WebElement companyLink;
+    private WebElement companyLink;
 
     @FindBy(css="[href='/license.pdf']")
-    WebElement licenseLink;
+    private WebElement licenseLink;
 
     @FindBy(css="[href='/career/682']")
-    WebElement careerLink;
+    private WebElement careerLink;
 
     @FindBy(css="[href='https://forbusiness.geekbrains.ru']")
-    WebElement forBusinessLink;
+    private WebElement forBusinessLink;
 
     @FindBy(css="[href='tel:+78007006841']")
-    WebElement phoneLink;
+    private WebElement phoneLink;
 
     @FindBy(css="svg[class='svg-icon icon-skolkovo']")
-    WebElement scolkovoLink;
+    private WebElement scolkovoLink;
 
-
-   private WebDriver driver;
 
     public Footer(WebDriver driver) {
-     this.driver= driver;
+         super(driver);
         PageFactory.initElements(driver, this);
     }
 
