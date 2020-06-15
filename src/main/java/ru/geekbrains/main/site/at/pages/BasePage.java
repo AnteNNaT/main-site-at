@@ -6,6 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class BasePage {
 
     @FindBy(css = "div button svg[class='svg-icon icon-popup-close-button ']")
@@ -28,6 +31,18 @@ public abstract class BasePage {
             this.buttonPopUpClosed.click();
         }
         return this;
+    }
+
+    protected WebElement findElement(List<WebElement> list, String expectedText) {
+        List<Object> arrayList = new ArrayList<>();
+        for (WebElement webElement : list) {
+            String actualText = webElement.getText();
+            arrayList.add(actualText);
+            if (actualText.toLowerCase().trim().equals(expectedText.toLowerCase().trim())) {
+                return webElement;
+            }
+        }
+        throw new RuntimeException("В коллекции элементов: " + arrayList + "\nНе найден элемент с тектом: " + expectedText);
     }
 
 }

@@ -26,7 +26,7 @@ public class CoursePage extends BasePage {
     public CoursePage(WebDriver driver) {
         super(driver);
         this.navigation = new LeftNavigation(driver);
-        this.courseNavigation=new CourseNavigation(driver);
+        this.courseNavigation = new CourseNavigation(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -41,7 +41,7 @@ public class CoursePage extends BasePage {
     @Step("Проверка выбора параметров фильтрации")
     public Page Filter(String... args) {
         for (String text : args) {
-            for (WebElement element: filterList) {
+            for (WebElement element : filterList) {
                 if (element.getText().equals(text)) {
                     element.click();
                 }
@@ -53,11 +53,8 @@ public class CoursePage extends BasePage {
     @Step("Проверка результатов фильтрации")
     public Page checkingCourses(String... args) {
         for (String text : args) {
-            for (WebElement element: courseList) {
-                if (element.getText().toLowerCase().equals(text.toLowerCase())) {
-                    wait10second.until(ExpectedConditions.visibilityOf(element));
-                }
-            }
+            WebElement element = findElement(courseList, text);
+            wait10second.until(ExpectedConditions.visibilityOf(element));
         }
         return new Page(driver);
     }
